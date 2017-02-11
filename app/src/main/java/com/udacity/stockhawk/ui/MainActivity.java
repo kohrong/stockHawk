@@ -25,6 +25,9 @@ import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
@@ -123,7 +126,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     void addStock(String symbol) {
-        if (symbol != null && !symbol.isEmpty()) {
+        Pattern p = Pattern.compile("[^A-Za-z0-9]");
+        Matcher m = p.matcher(symbol);
+        if(m.find()) {
+            String message = getString(R.string.pattern_error);
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        } else if (!symbol.isEmpty()) {
 
             if (networkUp()) {
                 swipeRefreshLayout.setRefreshing(true);

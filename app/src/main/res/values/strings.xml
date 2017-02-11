@@ -34,5 +34,6 @@
     <string name="fab_content_description" translatable="false">Add a new stock</string>
     <string name="historical">Historical</string>
     <string name="title_widget_detail">Title widget</string>
+    <string name="pattern_error">El símbolo insertado no debe tener caracteres especiales</string>
 
 </resources>
